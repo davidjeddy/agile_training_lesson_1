@@ -80,6 +80,19 @@ class ParseBowlingScore {
 
         return spareroll;
     }
+
+    getStrikeScore(rollArray) {
+        var strikeroll = [];
+
+        for (var i = 0; i < rollArray.length; i++) {
+            if (rollArray[i] !== 10) { continue }
+
+            var spareValue = (rollArray[i] + rollArray[i+1] + rollArray[i+2]);
+            strikeroll.push(spareValue);
+        }
+
+        return strikeroll;
+    }
 }
 
 describe( "Parse Bowling Score", function () {
@@ -126,10 +139,18 @@ describe( "Parse Bowling Score", function () {
     });
 
     it ("Calculate score, with spares", function() {
-        const score = [2,8,6,3,5,3,5,3,2,6,3,7,0,3,3,4,7,2,1,2];
+        const score = [2,8,6,3,5,3,5,3,2,6,3,7,0,3,3,4,7,2,1,2]; //81
 
         const result = sut.getSpareScore(score);
 
         expect(result).toEqual([16, 10]);
+    });
+
+    it ("Calculate score, with strikes", function() {
+        const score = [10,6,3,5,3,5,3,2,6,10,1,3,3,4,7,2,1,2]; //89
+
+        const result = sut.getStrikeScore(score);
+
+        expect(result).toEqual([19, 14]);
     });
 });
