@@ -20,29 +20,70 @@
 class ParseBowlingScore {
 
     constructor() {
-        this.gameData = '{"date":"2017-01-01","rolls":"11111111111111111111"}';
+        this.gameData = JSON.parse('{"date":"2017-01-01","rolls":"11111111111111111111"}');
+        this.gameData.rolls = this.gameData.rolls.split('');
+        // this.replaceXWith10();
+        // this.replaceTackWith0();
+        // this.replaceFwdSlashWithSpareValue();
+        // this.replaceIntegerWithString();
     }
 
-    convertGameStringToObject() {
-        return JSON.parse(this.gameData);
+    replaceXWith10 () {
+        return this.gameData.rolls.map(function(roll) {
+            if (roll === 'X') {
+                return 10;
+            }
+        })
     }
 
-    parseScore () {
-        return 'asdf';
+    replaceTackWith0 () {
+        return this.gameData.rolls.map(function(roll) {
+            if (roll === '-') {
+                return 0;
+            }
+        })
+    }
+
+    replaceFwdSlashWithSpareValue () {
+        return this.gameData.rolls.map(function(roll, i, rollArray) {
+            if (roll === '/') {
+                returnValue (rollArray[i--] - 10);
+                return returnValue;
+            }
+        })
+    }
+
+    replaceStringWithInteger () {
+        return this.gameData.rolls.map(function(roll) {
+            return Number(roll);
+        })
     }
 }
 
 describe( "Parse Bowling Score", function () {
     const sut = new ParseBowlingScore();
 
-    it ("entire score is a string", function () {
-        const result = sut.parseScore();
-        expect(typeof result).toBe('string')
-    });
+    it ( "Replace X with 10", function() {
+        const result = sut.replaceXWith10();
+        expect(result.indexOf('') >= 0).toBe(false)
+    })
 
-    it ("Convert string to Object", function () {
-        const result = sut.convertGameStringToObject();
-        expect(typeof result).toBe('object')
-        expect(result.date).toEqual('2017-01-01')
+    it ( "Replace task with 0", function() {
+        const result = sut.replaceTackWith0();
+        expect(result.indexOf('-') >= 0).toBe(false)
+    })
+
+    it ( "Replace / with integer", function() {
+        const result = sut.replaceFwdSlashWithSpareValue();
+        expect(result.indexOf('/') >= 0).toBe(false)
+    })
+
+    it ( "Replace String with Integer", function() {
+        const result = sut.replaceStringWithInteger();
+        expect(result.filter(function(value) {
+            if (value instanceof String) {
+                return true;
+            }
+        }).length > 0).toBe(false)
     })
 });
