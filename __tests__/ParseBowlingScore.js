@@ -17,6 +17,9 @@
  * ]
  */
 
+// function for adding two numbers. Easy!
+const add = (a, b) => a + b;
+
 class ParseBowlingScore {
 
     constructor() {
@@ -24,7 +27,7 @@ class ParseBowlingScore {
         this.gameData.rolls = this.gameData.rolls.split('');
         // this.replaceXWith10();
         // this.replaceTackWith0();
-        // this.replaceFwdSlashWithSpareValue();
+        // this.replaceFwdSlashWithIntegerValue();
         // this.replaceIntegerWithString();
     }
 
@@ -44,7 +47,7 @@ class ParseBowlingScore {
         })
     }
 
-    replaceFwdSlashWithSpareValue () {
+    replaceFwdSlashWithIntegerValue () {
         return this.gameData.rolls.map(function(roll, i, rollArray) {
             if (roll === '/') {
                 returnValue (rollArray[i--] - 10);
@@ -57,6 +60,25 @@ class ParseBowlingScore {
         return this.gameData.rolls.map(function(roll) {
             return Number(roll);
         })
+    }
+
+    getStandardScore(scoreArray) {
+        return scoreArray.reduce(add)
+    }
+
+    getSpareScore(rollArray) {
+        var spareroll = [];
+
+        for (var i = 0; i < rollArray.length; i+=2) {
+            if (rollArray[i] === 10) { continue }
+
+            if (rollArray[i] + rollArray[i+1] === 10) {
+                var spareValue = (10 + rollArray[i+2]);
+                spareroll.push(spareValue);
+            }
+        }
+
+        return spareroll;
     }
 }
 
@@ -74,7 +96,7 @@ describe( "Parse Bowling Score", function () {
     })
 
     it ( "Replace / with integer", function() {
-        const result = sut.replaceFwdSlashWithSpareValue();
+        const result = sut.replaceFwdSlashWithIntegerValue();
         expect(result.indexOf('/') >= 0).toBe(false)
     })
 
@@ -86,4 +108,28 @@ describe( "Parse Bowling Score", function () {
             }
         }).length > 0).toBe(false)
     })
+
+    it ("Score is all zeros", function () {
+        const score = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+        const result = sut.getStandardScore(score);
+
+        expect(result).toEqual(0);
+    })
+
+    it ("Standard score, no bonuses", function() {
+        const score = [0,8,6,3,5,3,5,3,2,6,0,7,0,3,3,4,7,2,1,2];
+
+        const result = sut.getStandardScore(score);
+
+        expect(result).toEqual(70);
+    });
+
+    it ("Calculate score, with spares", function() {
+        const score = [2,8,6,3,5,3,5,3,2,6,3,7,0,3,3,4,7,2,1,2];
+
+        const result = sut.getSpareScore(score);
+
+        expect(result).toEqual([16, 10]);
+    });
 });
