@@ -11,11 +11,6 @@
     "test": "jest"
   },
   "jest": {
-    "testMatch": [
-      "./GreetingBuilder.js"
-    ]
-  },
-  "jest": {
     "testRegex": "./__tests__/.*.js$",
     "rootDir": "."
   },
