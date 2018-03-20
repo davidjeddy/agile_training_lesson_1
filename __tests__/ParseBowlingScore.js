@@ -1,34 +1,15 @@
-// Strikes = 'X' = strike = 10, convert to integer of 10
-// Dash = '-' = Gutter = 0
-// no delimiters
-// String number {1-9} = integer 1 -> 9
-// Spare = '/' = prev. number subtract 10.
-
-// Given the string return an array of numbers:
-// Exp: 9/------------------ response would be
-/**
- * [
- *   9,
- *   1,
- *   0,
- *   0,
- *   0,
- *   ...
- * ]
- */
-
-// function for adding two numbers. Easy!
 const add = (a, b) => a + b;
 
 class ParseBowlingScore {
 
-    constructor() {
-        this.gameData = JSON.parse('{"date":"2017-01-01","rolls":"11111111111111111111"}');
+    constructor(gameData) {
+
+        if (gameData === undefined) {
+            gameData = '{"date":"2017-01-01","rolls":"11111111111111111111"}';
+        }
+
+        this.gameData = JSON.parse(gameData);
         this.gameData.rolls = this.gameData.rolls.split('');
-        // this.replaceXWith10();
-        // this.replaceTackWith0();
-        // this.replaceFwdSlashWithIntegerValue();
-        // this.replaceIntegerWithString();
     }
 
     replaceXWith10 () {
