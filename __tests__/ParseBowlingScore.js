@@ -17,3 +17,18 @@
  * ]
  */
 
+class ParseBowlingScore {
+    parseScore () {
+        return 'asdf';
+    }
+}
+
+describe( "Parse Bowling Score", function () {
+
+    it ("entire score is a string", function () {
+      const sut = new ParseBowlingScore();
+      const result = sut.parseScore();
+      expect(typeof result).toBe('string')
+    });
+
+});
