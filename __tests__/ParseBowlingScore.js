@@ -68,7 +68,8 @@ class ParseBowlingScore {
         for (var i = 0; i < rollArray.length; i++) {
             if (rollArray[i] !== 10) { continue }
 
-            var spareValue = (rollArray[i] + rollArray[i+1] + rollArray[i+2]);
+
+            var spareValue = (rollArray[i] + (rollArray[i+1] ? rollArray[i+1] : 0) + (rollArray[i+2] ? rollArray[i+2] : 0));
             strikeroll.push(spareValue);
         }
 
@@ -133,5 +134,15 @@ describe( "Parse Bowling Score", function () {
         const result = sut.getStrikeScore(score);
 
         expect(result).toEqual([19, 14]);
+    });
+
+    it ("Perfect game", function() {
+        const score = [10,10,10,10,10,10,10,10,10,10,10]; // 300
+
+        const result = sut.getStrikeScore(score);
+
+        expect(result).toEqual([30, 30, 30, 30, 30, 30, 30, 30, 30, 20, 10]);
+
+        expect(result.reduce(add)).toEqual(300);
     });
 });
