@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Bowling Score App" type="JavaScriptTestRunnerJest" factoryName="Jest" activateToolWindowBeforeRun="false">
+    <node-interpreter value="project" />
+    <node-options value="" />
+    <working-dir value="$PROJECT_DIR$" />
+    <jest-options value="--watch --coverage" />
+    <envs />
+    <scope-kind value="ALL" />
+    <method />
+  </configuration>
+</component>
