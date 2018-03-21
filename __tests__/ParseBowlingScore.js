@@ -85,7 +85,7 @@ describe( "Parse Bowling Score", function () {
         expect(result.indexOf('') >= 0).toBe(false)
     })
 
-    it ( "Replace task with 0", function() {
+    it ( "Replace dash with 0", function() {
         const result = sut.replaceTackWith0();
         expect(result.indexOf('-') >= 0).toBe(false)
     })
