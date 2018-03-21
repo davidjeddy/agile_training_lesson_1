@@ -5,7 +5,7 @@ class ParseBowlingScore {
     constructor(gameData) {
 
         if (gameData === undefined) {
-            gameData = '{"date":"2017-01-01","rolls":"11111111111111111111"}';
+            gameData = '{"date":"2017-01-01","rolls":"9/------------------"}';
         }
 
         this.gameData = JSON.parse(gameData);
@@ -31,7 +31,7 @@ class ParseBowlingScore {
     replaceFwdSlashWithIntegerValue () {
         return this.gameData.rolls.map(function(roll, i, rollArray) {
             if (roll === '/') {
-                returnValue (rollArray[i--] - 10);
+                const returnValue  = (rollArray[i--] - 10);
                 return returnValue;
             }
         })
@@ -43,8 +43,8 @@ class ParseBowlingScore {
         })
     }
 
-    getStandardScore(scoreArray) {
-        return scoreArray.reduce(add)
+    getStandardScore(rollArray) {
+        return rollArray.reduce(add)
     }
 
     getSpareScore(rollArray) {
@@ -80,22 +80,22 @@ class ParseBowlingScore {
 describe( "Parse Bowling Score", function () {
     const sut = new ParseBowlingScore();
 
-    it ( "Replace X with 10", function() {
+    it ("Replace X with 10", function() {
         const result = sut.replaceXWith10();
         expect(result.indexOf('') >= 0).toBe(false)
     })
 
-    it ( "Replace dash with 0", function() {
+    it ("Replace dash with 0", function() {
         const result = sut.replaceTackWith0();
         expect(result.indexOf('-') >= 0).toBe(false)
     })
 
-    it ( "Replace / with integer", function() {
+    it ("Replace / with integer", function() {
         const result = sut.replaceFwdSlashWithIntegerValue();
         expect(result.indexOf('/') >= 0).toBe(false)
     })
 
-    it ( "Replace String with Integer", function() {
+    it ("Replace String with Integer", function() {
         const result = sut.replaceStringWithInteger();
         expect(result.filter(function(value) {
             if (value instanceof String) {
