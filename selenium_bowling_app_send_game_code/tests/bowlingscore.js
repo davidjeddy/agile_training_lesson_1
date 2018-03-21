@@ -8,7 +8,7 @@ const driver = WebDriver.remote( {
 
 describe( "Visit bowlingscore.info", function () {
 
-    const url = "http://bowlingscore.info/";
+    const url = "https://bowlingscore.info/";
 
     beforeAll( function () {
         jest.setTimeout( 10000 )
@@ -36,4 +36,4 @@ describe( "Visit bowlingscore.info", function () {
             )
 
     })
-});
+})
