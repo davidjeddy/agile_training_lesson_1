@@ -1,6 +1,5 @@
 // valid code is 4 character alpha-numberic, uppercase letters only
 class PostBowlingScore {
-
 }
 
 describe("Posting new bowling game codes...", function () {
