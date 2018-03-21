@@ -11,12 +11,16 @@ class Greeting1 {
     }
 
     build (name, age) {
+        if (age === 10) {
+           return "Word " + name + ".";
+        }
+
         return "Yo, Joe!"
     }
 }
 
-describe("Mocking Lesson 1", function() {
-    it( "should build a greeting based on age", function() {
+describe("Stubbing Lesson 1", function() {
+    it( "...should build a greeting based on age", function() {
         var ds = new DataService();
 
         sinon.stub( ds, "getMessageBasedOnAge" )
