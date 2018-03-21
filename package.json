@@ -16,5 +16,13 @@
     "rootDir": "."
   },
   "author": "David J Eddy <me@davidjeddy.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidjeddy/agile_training_lesson_1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davidjeddy/agile_training_lesson_1/issues"
+  },
+  "homepage": "https://github.com/davidjeddy/agile_training_lesson_1#readme"
 }
