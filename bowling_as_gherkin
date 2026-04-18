@@ -1,0 +1,29 @@
+Scenario: Score a bowling game
+    Given a game of bowling game score
+    When the player does not have a strike or spare
+    Then calculate the score normally
+
+Scenario: Score a bowling game
+    Given a player rolls an entire frame
+    When the score is a spare
+    Then score the frame as a total of frame score + the next roll score
+
+Scenario: Score a bowling game
+    Given The player is knocking down 10 pins in one roll
+    When the player has a strike
+    Then the score is the frame + the next two rolls.
+
+Scenario: The user gets a perfect score
+    Given the player rolls strikes on every roll
+    When it is the players roll
+    Then the score totals 300
+
+Scenario: The game is on the 10th frame
+    Given the game is almost over
+    When the game is on the 10th frame
+    Then the frame has 3 rolls.
+
+Scenario: The player scores a 30 for a frame
+    Given the player rolls a strike
+    When all 10 pins are knocked down
+    Then add 10 + the sum of the next two rolls.
