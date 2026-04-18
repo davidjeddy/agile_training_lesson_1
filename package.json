@@ -1,0 +1,24 @@
+{
+  "name": "agile_training_testing_lesson_1",
+  "version": "0.0.1",
+  "description": "Agile Training Lesson 1",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^22.4.2"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "testMatch": [
+      "./GreetingBuilder.js"
+    ]
+  },
+  "jest": {
+    "testRegex": "./__tests__/.*.js$",
+    "rootDir": "."
+  },
+  "author": "David J Eddy <me@davidjeddy.com>",
+  "license": "MIT"
+}
